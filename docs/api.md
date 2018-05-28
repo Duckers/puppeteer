@@ -1992,6 +1992,8 @@ Gets the full HTML contents of the frame, including the doctype.
 - `...args` <...[Serializable]|[JSHandle]> Arguments to pass to  `pageFunction`
 - returns: <[Promise]<[Serializable]>> Promise which resolves to the return value of `pageFunction`
 
+
+
 If the function passed to the `frame.evaluate` returns a [Promise], then `frame.evaluate` would wait for the promise to resolve and return its value.
 
 If the function passed to the `frame.evaluate` returns a non-[Serializable] value, then `frame.evaluate` resolves to `undefined`.
@@ -2002,6 +2004,8 @@ const result = await frame.evaluate(() => {
 });
 console.log(result); // prints "56"
 ```
+
+If a function is passed to `frame.evaluate`, it will be stringified. This means the function can not access the enclosing scope, even if the syntax suggests it.
 
 A string can also be passed in instead of a function.
 
@@ -2029,6 +2033,8 @@ If the function, passed to the `frame.evaluateHandle`, returns a [Promise], then
 const aWindowHandle = await frame.evaluateHandle(() => Promise.resolve(window));
 aWindowHandle; // Handle for the window object.
 ```
+
+If a function is passed to `frame.evaluate`, it will be stringified. This means the function can not access the enclosing scope, even if the syntax suggests it.
 
 A string can also be passed in instead of a function.
 
